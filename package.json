@@ -1,12 +1,10 @@
 {
-  "name": "@vx/core",
-  "version": "1.0.5",
+  "name": "@vxf/core",
+  "version": "1.0.0",
   "main": "lib/index.js",
+  "author": "lurkmorr",
   "license": "MIT",
   "repository": "https://github.com/vxframework/core",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "build": "tsc",
     "lint": "eslint \"./{src,apps,libs,test}/**/*.ts\" --fix",

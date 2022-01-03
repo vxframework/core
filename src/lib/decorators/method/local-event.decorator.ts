@@ -5,6 +5,5 @@ import { EventMetadata } from '../../../types';
 export const LocalEvent =
   (event: string): MethodDecorator =>
   (target, method: string): void => {
-    const reflector = new Reflector();
     Reflector.extend<EventMetadata>(target, LOCAL_EVENT, { event, method });
   };
