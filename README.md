@@ -85,12 +85,12 @@ class TestController {
     // logic goes here
   }
 
-  @LocalEvent("kekLocal", false)
+  @LocalEvent("kekLocal")
   private localEventKek(...args: unknown[]): void {
     // logic goes here
   }
 
-  @NetEvent("kekLocal", false)
+  @NetEvent("kekNet")
   private netEventKek(...args: unknown[]): void {
     // logic goes here
   }
