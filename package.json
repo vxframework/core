@@ -1,12 +1,12 @@
 {
   "name": "@vxf/core",
-  "version": "1.0.0-21",
+  "version": "1.0.0-22",
   "main": "lib/index.js",
   "author": "lurkmorr",
   "license": "MIT",
   "repository": "https://github.com/vxframework/core",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf ./lib && tsc",
     "lint": "eslint \"./{src,apps,libs,test}/**/*.ts\" --fix",
     "format": "prettier --write \"src/**/*.ts\"",
     "prepublishOnly": "yarn lint && yarn format && yarn build"

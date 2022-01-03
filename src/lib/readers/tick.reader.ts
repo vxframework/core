@@ -1,8 +1,8 @@
-import { IMetadataReader } from '../../../lib';
 import { Logger } from '../logger';
 import { Reflector } from '../reflector';
 import { TickMetadata } from '../../types';
 import { TICK } from '../../const';
+import { IMetadataReader } from '../../interfaces';
 
 export class TickReader implements IMetadataReader {
   public static log = true;
