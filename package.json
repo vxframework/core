@@ -1,6 +1,6 @@
 {
   "name": "@vxf/core",
-  "version": "1.0.2",
+  "version": "1.0.2-1",
   "main": "lib/index.js",
   "author": "lurkmorr",
   "license": "MIT",
