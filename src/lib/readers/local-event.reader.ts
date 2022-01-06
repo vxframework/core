@@ -4,6 +4,7 @@ import { EventMetadata } from '../../types';
 import { LOCAL_EVENT } from '../../const';
 import { Logger } from '../logger';
 import { Injectable } from '../decorators';
+import { PostConstruct } from '../../../lib';
 
 @Injectable()
 export class LocalEventReader implements IMetadataReader {
@@ -11,10 +12,16 @@ export class LocalEventReader implements IMetadataReader {
 
   private logger = new Logger('LocalEvent');
 
+  @PostConstruct()
+  private deprecate(): void {
+    console.warn(`LocalEventReader is deprecated. Use EventReader`);
+  }
+
   public read(target: unknown): void {
     const ctor = target.constructor;
     const controllerName = Reflector.getControllerName(ctor);
     const events = Reflector.get<EventMetadata[]>(target, LOCAL_EVENT) || [];
+    Reflect.deleteMetadata(LOCAL_EVENT, target);
     events.forEach(({ method, event }) => {
       global.on?.(event, target[method].bind(target));
       if (!LocalEventReader.log) {

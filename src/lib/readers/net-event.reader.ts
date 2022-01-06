@@ -4,6 +4,7 @@ import { EventMetadata } from '../../types';
 import { NET_EVENT } from '../../const';
 import { Logger } from '../logger';
 import { Injectable } from '../decorators';
+import { PostConstruct } from '../../../lib';
 
 @Injectable()
 export class NetEventReader implements IMetadataReader {
@@ -11,12 +12,20 @@ export class NetEventReader implements IMetadataReader {
 
   private logger = new Logger('NetEvent');
 
+  @PostConstruct()
+  private deprecate(): void {
+    console.warn(`NetEventReader is deprecated. Use EventReader`);
+  }
+
   public read(target: unknown): void {
     const ctor = target.constructor;
     const controllerName = Reflector.getControllerName(ctor);
     const events = Reflector.get<EventMetadata[]>(target, NET_EVENT) || [];
+
+    Reflect.deleteMetadata(NET_EVENT, target);
+
     events.forEach(({ method, event }) => {
-      global.on?.(event, target[method].bind(target));
+      global.onNet?.(event, target[method].bind(target));
       if (!NetEventReader.log) {
         return null;
       }
