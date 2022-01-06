@@ -3,8 +3,7 @@ import { Reflector } from '../reflector';
 import { EventMetadata } from '../../types';
 import { NET_EVENT } from '../../const';
 import { Logger } from '../logger';
-import { Injectable } from '../decorators';
-import { PostConstruct } from '../../../lib';
+import { Injectable, PostConstruct } from '../decorators';
 
 @Injectable()
 export class NetEventReader implements IMetadataReader {

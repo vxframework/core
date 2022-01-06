@@ -1,10 +1,7 @@
-import {
-  IMetadataReader,
-  Inject,
-  Injectable,
-  LocalEventReader,
-  NetEventReader,
-} from '../../../lib';
+import { Injectable, Inject } from '../decorators';
+import { IMetadataReader } from '../../interfaces';
+import { LocalEventReader } from './local-event.reader';
+import { NetEventReader } from './net-event.reader';
 
 @Injectable()
 export class EventReader implements IMetadataReader {
