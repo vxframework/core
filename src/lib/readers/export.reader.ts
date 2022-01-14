@@ -19,9 +19,12 @@ export class ExportReader implements IMetadataReader {
     const ctor = target.constructor;
     const controllerName = Reflector.getControllerName(ctor);
     const exports = Reflector.get<ExportMetadata[]>(target, EXPORT) || [];
+
     exports.forEach(({ method, name }) => {
       name = name || this.maskExport(controllerName, method);
-      global.exports?.(name, target[method].bind(target));
+      if (global.exports) {
+        global.exports(name, target[method].bind(target));
+      }
       if (!ExportReader.log) {
         return null;
       }
